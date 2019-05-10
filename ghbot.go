@@ -130,9 +130,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.CheckRunEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.checkRunEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -143,9 +143,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.CheckSuiteEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.checkSuiteEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -156,8 +156,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.CommitCommentEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.commitCommentEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -168,8 +168,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.CreateEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.createEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -180,8 +180,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.DeleteEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.deleteEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -202,8 +202,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.DeploymentEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.deploymentEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -214,8 +214,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.DeploymentStatusEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.deploymentStatusEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -226,8 +226,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.ForkEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.forkEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -238,7 +238,7 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.GitHubAppAuthorizationEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
+			Sender: *(e.GetSender().Login),
 		}.String())
 		for _, hook := range bot.gitHubAppAuthorizationEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -249,8 +249,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.GollumEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.gollumEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -261,7 +261,7 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.InstallationEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
+			Sender: *(e.GetSender().Login),
 		}.String())
 		for _, hook := range bot.installationEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -272,7 +272,7 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.InstallationRepositoriesEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
+			Sender: *(e.GetSender().Login),
 		}.String())
 		for _, hook := range bot.installationRepositoriesEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -283,8 +283,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.IssueCommentEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.issueCommentEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -305,8 +305,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.IssuesEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.issuesEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -317,8 +317,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.LabelEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type: typ,
-			Org:  *e.GetOrg().Name,
-			Repo: *e.GetRepo().Name,
+			Org:  *(e.GetOrg().Name),
+			Repo: *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.labelEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -329,7 +329,7 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.MarketplacePurchaseEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
+			Sender: *(e.GetSender().Login),
 		}.String())
 		for _, hook := range bot.marketplacePurchaseEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -340,8 +340,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.MemberEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.memberEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -352,8 +352,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.MembershipEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
 		}.String())
 		for _, hook := range bot.membershipEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -374,9 +374,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.MilestoneEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.milestoneEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -387,7 +387,7 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.OrgBlockEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
+			Sender: *(e.GetSender().Login),
 		}.String())
 		for _, hook := range bot.orgBlockEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -398,7 +398,7 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.OrganizationEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
+			Sender: *(e.GetSender().Login),
 		}.String())
 		for _, hook := range bot.organizationEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -409,8 +409,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.PageBuildEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.pageBuildEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -431,9 +431,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.ProjectCardEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.projectCardEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -444,9 +444,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.ProjectColumnEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.projectColumnEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -457,9 +457,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.ProjectEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.projectEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -470,8 +470,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.PublicEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.publicEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -482,8 +482,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.PullRequestEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.pullRequestEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -494,8 +494,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.PullRequestReviewCommentEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.pullRequestReviewCommentEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -506,8 +506,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.PullRequestReviewEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.pullRequestReviewEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -518,8 +518,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.PushEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.pushEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -530,8 +530,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.ReleaseEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.releaseEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -542,9 +542,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.RepositoryEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.repositoryEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -575,8 +575,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.StatusEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.statusEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -587,9 +587,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.TeamAddEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.teamAddEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -600,9 +600,9 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.TeamEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Org:    *e.GetOrg().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Org:    *(e.GetOrg().Name),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.teamEventHooks {
 			if err := hook(ctx, e); err != nil {
@@ -613,8 +613,8 @@ func (bot *Bot) handleWebHookEvent(ctx context.Context, typ string, event interf
 	case *github.WatchEvent:
 		bot.logger.Println(eventTriggerLog{
 			Type:   typ,
-			Sender: *e.GetSender().Name,
-			Repo:   *e.GetRepo().Name,
+			Sender: *(e.GetSender().Login),
+			Repo:   *(e.GetRepo().Name),
 		}.String())
 		for _, hook := range bot.watchEventHooks {
 			if err := hook(ctx, e); err != nil {
